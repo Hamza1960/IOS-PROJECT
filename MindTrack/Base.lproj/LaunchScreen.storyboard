@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="AppleSDK" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LaunchVC">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="LaunchScene">
+            <objects>
+                <viewController id="LaunchVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LaunchView">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🧠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaunchEmoji">
+                                <rect key="frame" x="146.5" y="356" width="100" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MindTrack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaunchTitle">
+                                <rect key="frame" x="96.5" y="426" width="200" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.40" green="0.49" blue="0.92" alpha="1"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Wellness Journal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaunchSubtitle">
+                                <rect key="frame" x="96.5" y="462" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.6" green="0.6" blue="0.6" alpha="1"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="LaunchEmoji" firstAttribute="centerX" secondItem="LaunchView" secondAttribute="centerX" id="EmojiCenterX"/>
+                            <constraint firstItem="LaunchEmoji" firstAttribute="centerY" secondItem="LaunchView" secondAttribute="centerY" constant="-40" id="EmojiCenterY"/>
+                            <constraint firstItem="LaunchTitle" firstAttribute="centerX" secondItem="LaunchView" secondAttribute="centerX" id="TitleCenterX"/>
+                            <constraint firstItem="LaunchTitle" firstAttribute="top" secondItem="LaunchEmoji" secondAttribute="bottom" constant="10" id="TitleTop"/>
+                            <constraint firstItem="LaunchSubtitle" firstAttribute="centerX" secondItem="LaunchView" secondAttribute="centerX" id="SubtitleCenterX"/>
+                            <constraint firstItem="LaunchSubtitle" firstAttribute="top" secondItem="LaunchTitle" secondAttribute="bottom" constant="5" id="SubtitleTop"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LaunchSafeArea"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LaunchFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0" y="0"/>
+        </scene>
+    </scenes>
+</document>
