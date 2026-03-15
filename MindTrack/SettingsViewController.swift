@@ -10,7 +10,14 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    private let tableView: UITableView = {
+        let tv = UITableView(frame: .zero, style: .insetGrouped)
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.register(UITableViewCell.self, forCellReuseIdentifier: "SettingsCell")
+        return tv
+    }()
     
     // Settings data
     private let sections = ["Notifications", "Appearance", "Data"]
@@ -28,18 +35,31 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
-        tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SettingsCell")
         view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.97, alpha: 1.0)
+        
+        setupTableView()
         
         // Load saved preferences
         reminderEnabled = UserDefaults.standard.bool(forKey: "reminderEnabled")
         darkModeEnabled = UserDefaults.standard.bool(forKey: "darkModeEnabled")
     }
     
+    private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
     // MARK: - UITableViewDataSource
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
