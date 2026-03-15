@@ -1,172 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="AppleSDK" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TabBarController">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tab-bar-ctrl">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in branding assets" minToolsVersion="11.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
-        <scene sceneID="TabBarScene">
+        <scene sceneID="tab-bar-scene">
             <objects>
-                <tabBarController id="TabBarController" customClass="UITabBarController" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TabBar">
+                <tabBarController id="tab-bar-ctrl" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tab-bar-id">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.40" green="0.49" blue="0.92" alpha="1"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.40000000000000002" green="0.4941176471" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="HomeNav" kind="relationship" relationship="viewControllers" id="TabToHome"/>
-                        <segue destination="ChartNav" kind="relationship" relationship="viewControllers" id="TabToCharts"/>
-                        <segue destination="HistoryNav" kind="relationship" relationship="viewControllers" id="TabToHistory"/>
-                        <segue destination="SettingsNav" kind="relationship" relationship="viewControllers" id="TabToSettings"/>
+                        <segue destination="home-nav" kind="relationship" relationship="viewControllers" id="segue-home"/>
+                        <segue destination="chart-nav" kind="relationship" relationship="viewControllers" id="segue-charts"/>
+                        <segue destination="hist-nav" kind="relationship" relationship="viewControllers" id="segue-history"/>
+                        <segue destination="set-nav" kind="relationship" relationship="viewControllers" id="segue-settings"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TabBarFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tab-bar-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0" y="0"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        
-        <!--Home Navigation Controller-->
-        <scene sceneID="HomeNavScene">
+        <!--Home-->
+        <scene sceneID="home-nav-scene">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HomeNav" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" id="HomeTabItem"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HomeNavBar">
+                <navigationController id="home-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="home-tab-item"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="home-nav-bar">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="HomeVC" kind="relationship" relationship="rootViewController" id="HomeNavToHome"/>
+                        <segue destination="home-vc-id" kind="relationship" relationship="rootViewController" id="segue-home-root"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HomeNavFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="home-nav-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-600" y="400"/>
+            <point key="canvasLocation" x="-1500" y="800"/>
         </scene>
-        
         <!--Home View Controller-->
-        <scene sceneID="HomeVCScene">
+        <scene sceneID="home-vc-scene">
             <objects>
-                <viewController id="HomeVC" customClass="HomeViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HomeView">
+                <viewController id="home-vc-id" customClass="HomeViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="home-view">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="home-safe-area"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <viewLayoutGuide key="safeArea" id="HomeViewSafeArea"/>
                     </view>
+                    <navigationItem key="navigationItem" title="MindTrack" id="home-nav-item"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HomeVCFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="home-vc-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-600" y="800"/>
+            <point key="canvasLocation" x="-1500" y="1500"/>
         </scene>
-        
-        <!--Charts Navigation Controller-->
-        <scene sceneID="ChartNavScene">
+        <!--Charts-->
+        <scene sceneID="chart-nav-scene">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ChartNav" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Charts" image="chart.line.uptrend.xyaxis" id="ChartTabItem"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ChartNavBar">
+                <navigationController id="chart-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Charts" image="chart.line.uptrend.xyaxis" catalog="system" id="chart-tab-item"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="chart-nav-bar">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ChartVC" kind="relationship" relationship="rootViewController" id="ChartNavToChart"/>
+                        <segue destination="chart-vc-id" kind="relationship" relationship="rootViewController" id="segue-chart-root"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ChartNavFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chart-nav-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0" y="400"/>
+            <point key="canvasLocation" x="-500" y="800"/>
         </scene>
-        
         <!--Chart View Controller-->
-        <scene sceneID="ChartVCScene">
+        <scene sceneID="chart-vc-scene">
             <objects>
-                <viewController id="ChartVC" customClass="ChartViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ChartView">
+                <viewController id="chart-vc-id" customClass="ChartViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="chart-view">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="chart-safe-area"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <viewLayoutGuide key="safeArea" id="ChartViewSafeArea"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Charts" id="chart-nav-item"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ChartVCFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chart-vc-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0" y="800"/>
+            <point key="canvasLocation" x="-500" y="1500"/>
         </scene>
-        
-        <!--History Navigation Controller-->
-        <scene sceneID="HistoryNavScene">
+        <!--History-->
+        <scene sceneID="hist-nav-scene">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HistoryNav" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="History" image="book.fill" id="HistoryTabItem"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HistoryNavBar">
+                <navigationController id="hist-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" image="book.fill" catalog="system" id="hist-tab-item"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hist-nav-bar">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="HistoryVC" kind="relationship" relationship="rootViewController" id="HistoryNavToHistory"/>
+                        <segue destination="hist-vc-id" kind="relationship" relationship="rootViewController" id="segue-hist-root"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HistoryNavFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hist-nav-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="600" y="400"/>
+            <point key="canvasLocation" x="500" y="800"/>
         </scene>
-        
         <!--History View Controller-->
-        <scene sceneID="HistoryVCScene">
+        <scene sceneID="hist-vc-scene">
             <objects>
-                <viewController id="HistoryVC" customClass="HistoryViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HistoryView">
+                <viewController id="hist-vc-id" customClass="HistoryViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hist-view">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hist-safe-area"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <viewLayoutGuide key="safeArea" id="HistoryViewSafeArea"/>
                     </view>
+                    <navigationItem key="navigationItem" title="History" id="hist-nav-item"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HistoryVCFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hist-vc-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="600" y="800"/>
+            <point key="canvasLocation" x="500" y="1500"/>
         </scene>
-        
-        <!--Settings Navigation Controller-->
-        <scene sceneID="SettingsNavScene">
+        <!--Settings-->
+        <scene sceneID="set-nav-scene">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SettingsNav" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape.fill" id="SettingsTabItem"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SettingsNavBar">
+                <navigationController id="set-nav" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape.fill" catalog="system" id="set-tab-item"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="set-nav-bar">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="SettingsVC" kind="relationship" relationship="rootViewController" id="SettingsNavToSettings"/>
+                        <segue destination="set-vc-id" kind="relationship" relationship="rootViewController" id="segue-set-root"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SettingsNavFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="set-nav-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1200" y="400"/>
+            <point key="canvasLocation" x="1500" y="800"/>
         </scene>
-        
         <!--Settings View Controller-->
-        <scene sceneID="SettingsVCScene">
+        <scene sceneID="set-vc-scene">
             <objects>
-                <viewController id="SettingsVC" customClass="SettingsViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SettingsView">
+                <viewController id="set-vc-id" customClass="SettingsViewController" customModule="MindTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="set-view">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="set-safe-area"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <viewLayoutGuide key="safeArea" id="SettingsViewSafeArea"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Settings" id="set-nav-item"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SettingsVCFirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="set-vc-first-resp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1200" y="800"/>
+            <point key="canvasLocation" x="1500" y="1500"/>
         </scene>
     </scenes>
     <resources>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
+        <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="102"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
+
