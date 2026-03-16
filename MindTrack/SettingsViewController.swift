@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.97, alpha: 1.0)
+        view.backgroundColor = .systemGroupedBackground
         
         setupTableView()
         
@@ -93,7 +93,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         case (0, 1): // Reminder Time
             let savedTime = UserDefaults.standard.string(forKey: "reminderTime") ?? "8:00 PM"
             config.secondaryText = savedTime
-            config.secondaryTextProperties.color = .gray
+            config.secondaryTextProperties.color = .secondaryLabel
             cell.contentConfiguration = config
             cell.accessoryType = .disclosureIndicator
             

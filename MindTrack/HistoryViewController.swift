@@ -28,7 +28,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .lightGray
+        label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,7 +38,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "History"
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.97, alpha: 1.0)
+        view.backgroundColor = .systemGroupedBackground
         setupUI()
     }
     
@@ -101,7 +101,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         config.secondaryText = dateStr
         config.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         config.secondaryTextProperties.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        config.secondaryTextProperties.color = .gray
+        config.secondaryTextProperties.color = .secondaryLabel
         cell.contentConfiguration = config
         cell.accessoryType = .disclosureIndicator
         

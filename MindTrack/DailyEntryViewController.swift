@@ -30,7 +30,7 @@ class DailyEntryViewController: UIViewController {
     
     private let dateCard: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.98, alpha: 1.0)
+        view.backgroundColor = .systemGray6
         view.layer.cornerRadius = 8
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -49,7 +49,7 @@ class DailyEntryViewController: UIViewController {
         let label = UILabel()
         label.text = "How are you feeling?"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -67,7 +67,7 @@ class DailyEntryViewController: UIViewController {
         let label = UILabel()
         label.text = "Energy Level"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -96,7 +96,7 @@ class DailyEntryViewController: UIViewController {
         let label = UILabel()
         label.text = "Daily Notes (Optional)"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -104,9 +104,10 @@ class DailyEntryViewController: UIViewController {
     private let notesTextView: UITextView = {
         let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 14)
-        tv.layer.borderColor = UIColor(red: 0.88, green: 0.88, blue: 0.88, alpha: 1.0).cgColor
-        tv.layer.borderWidth = 2
+        tv.layer.borderColor = UIColor.separator.cgColor
+        tv.layer.borderWidth = 1 // Use 1 for standard separator look
         tv.layer.cornerRadius = 12
+        tv.backgroundColor = .secondarySystemGroupedBackground
         tv.textContainerInset = UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
@@ -130,7 +131,7 @@ class DailyEntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Log Today"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
         setupUI()
         updateDateLabel()
@@ -192,10 +193,10 @@ class DailyEntryViewController: UIViewController {
             container.addSubview(emojiLabel)
             container.addSubview(textLabel)
             
-            button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor(red: 0.88, green: 0.88, blue: 0.88, alpha: 1.0).cgColor
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.separator.cgColor
             button.layer.cornerRadius = 12
-            button.backgroundColor = .white
+            button.backgroundColor = .secondarySystemGroupedBackground
             button.translatesAutoresizingMaskIntoConstraints = false
             button.addTarget(self, action: #selector(moodSelected(_:)), for: .touchUpInside)
             
@@ -283,8 +284,8 @@ class DailyEntryViewController: UIViewController {
         
         // Reset all button styles
         for btn in moodButtons {
-            btn.layer.borderColor = UIColor(red: 0.88, green: 0.88, blue: 0.88, alpha: 1.0).cgColor
-            btn.backgroundColor = .white
+            btn.layer.borderColor = UIColor.separator.cgColor
+            btn.backgroundColor = .secondarySystemGroupedBackground
             btn.transform = .identity
         }
         

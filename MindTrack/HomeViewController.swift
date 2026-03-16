@@ -52,7 +52,7 @@ class HomeViewController: UIViewController {
     
     private let weekSummaryCard: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.98, alpha: 1.0)
+        view.backgroundColor = .systemGray6
         view.layer.cornerRadius = 12
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.text = "This Week's Mood"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .secondaryLabel
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -89,10 +89,10 @@ class HomeViewController: UIViewController {
     
     private let chartPreviewView: MiniChartView = {
         let view = MiniChartView()
-        view.backgroundColor = .white
+        view.backgroundColor = .secondarySystemGroupedBackground
         view.layer.cornerRadius = 12
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.88, green: 0.88, blue: 0.88, alpha: 1.0).cgColor
+        view.layer.borderColor = UIColor.separator.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -127,9 +127,13 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setupUI()
         updateDateLabel()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -264,7 +268,7 @@ class MiniChartView: UIView {
             // Draw placeholder text
             let attrs: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 14, weight: .regular),
-                .foregroundColor: UIColor.lightGray
+                .foregroundColor: UIColor.secondaryLabel
             ]
             let text = "Chart Preview - Log entries to see trends"
             let size = text.size(withAttributes: attrs)
@@ -276,9 +280,12 @@ class MiniChartView: UIView {
         let maxVal: CGFloat = 5.0
         let stepX = drawRect.width / CGFloat(max(dataPoints.count - 1, 1))
         
+        // Use a dynamic color for the line in MiniChartView to ensure it pops
+        let lineColor = UIColor(red: 0.40, green: 0.49, blue: 0.92, alpha: 1.0)
+        
         // Draw line
         context.setLineWidth(2.5)
-        context.setStrokeColor(UIColor(red: 0.40, green: 0.49, blue: 0.92, alpha: 1.0).cgColor)
+        context.setStrokeColor(lineColor.cgColor)
         
         for (i, point) in dataPoints.enumerated() {
             let x = drawRect.minX + CGFloat(i) * stepX
@@ -292,12 +299,13 @@ class MiniChartView: UIView {
         }
         context.strokePath()
         
-        // Draw dots
+        // Draw dots with a dot color that works in both modes
+        let dotColor = UIColor(red: 0.46, green: 0.30, blue: 0.64, alpha: 1.0)
         for (i, point) in dataPoints.enumerated() {
             let x = drawRect.minX + CGFloat(i) * stepX
             let y = drawRect.maxY - (point / maxVal) * drawRect.height
             
-            context.setFillColor(UIColor(red: 0.46, green: 0.30, blue: 0.64, alpha: 1.0).cgColor)
+            context.setFillColor(dotColor.cgColor)
             context.fillEllipse(in: CGRect(x: x - 4, y: y - 4, width: 8, height: 8))
         }
     }

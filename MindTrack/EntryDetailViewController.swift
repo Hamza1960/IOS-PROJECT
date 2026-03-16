@@ -32,7 +32,7 @@ class EntryDetailViewController: UIViewController {
     
     private let moodCard: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 0.98, alpha: 1.0)
+        view.backgroundColor = .systemGray6
         view.layer.cornerRadius = 16
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -58,7 +58,7 @@ class EntryDetailViewController: UIViewController {
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.textColor = .secondaryLabel
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -68,7 +68,7 @@ class EntryDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Energy Level"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -85,7 +85,7 @@ class EntryDetailViewController: UIViewController {
     private let energyBar: UIProgressView = {
         let pv = UIProgressView(progressViewStyle: .bar)
         pv.progressTintColor = UIColor(red: 0.40, green: 0.49, blue: 0.92, alpha: 1.0)
-        pv.trackTintColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.0)
+        pv.trackTintColor = .separator
         pv.layer.cornerRadius = 4
         pv.clipsToBounds = true
         pv.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +96,7 @@ class EntryDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Notes"
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -104,7 +104,7 @@ class EntryDetailViewController: UIViewController {
     private let notesTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -115,7 +115,7 @@ class EntryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Entry Detail"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
         setupUI()
         populateData()
@@ -136,7 +136,8 @@ class EntryDetailViewController: UIViewController {
         
         // Energy section
         let energyCard = UIView()
-        energyCard.backgroundColor = .white
+        energyCard.backgroundColor = .secondarySystemGroupedBackground
+        energyCard.layer.cornerRadius = 12
         energyCard.translatesAutoresizingMaskIntoConstraints = false
         energyCard.addSubview(energyTitleLabel)
         energyCard.addSubview(energyValueLabel)
@@ -145,7 +146,8 @@ class EntryDetailViewController: UIViewController {
         
         // Notes section
         let notesCard = UIView()
-        notesCard.backgroundColor = .white
+        notesCard.backgroundColor = .secondarySystemGroupedBackground
+        notesCard.layer.cornerRadius = 12
         notesCard.translatesAutoresizingMaskIntoConstraints = false
         notesCard.addSubview(notesTitleLabel)
         notesCard.addSubview(notesTextLabel)
@@ -173,23 +175,23 @@ class EntryDetailViewController: UIViewController {
             dateLabel.bottomAnchor.constraint(equalTo: moodCard.bottomAnchor, constant: -20),
             
             // Energy
-            energyTitleLabel.topAnchor.constraint(equalTo: energyCard.topAnchor),
-            energyTitleLabel.leadingAnchor.constraint(equalTo: energyCard.leadingAnchor),
+            energyTitleLabel.topAnchor.constraint(equalTo: energyCard.topAnchor, constant: 15),
+            energyTitleLabel.leadingAnchor.constraint(equalTo: energyCard.leadingAnchor, constant: 15),
             energyValueLabel.topAnchor.constraint(equalTo: energyTitleLabel.bottomAnchor, constant: 10),
             energyValueLabel.centerXAnchor.constraint(equalTo: energyCard.centerXAnchor),
             energyBar.topAnchor.constraint(equalTo: energyValueLabel.bottomAnchor, constant: 10),
-            energyBar.leadingAnchor.constraint(equalTo: energyCard.leadingAnchor),
-            energyBar.trailingAnchor.constraint(equalTo: energyCard.trailingAnchor),
+            energyBar.leadingAnchor.constraint(equalTo: energyCard.leadingAnchor, constant: 15),
+            energyBar.trailingAnchor.constraint(equalTo: energyCard.trailingAnchor, constant: -15),
             energyBar.heightAnchor.constraint(equalToConstant: 8),
-            energyBar.bottomAnchor.constraint(equalTo: energyCard.bottomAnchor),
+            energyBar.bottomAnchor.constraint(equalTo: energyCard.bottomAnchor, constant: -20),
             
             // Notes
-            notesTitleLabel.topAnchor.constraint(equalTo: notesCard.topAnchor),
-            notesTitleLabel.leadingAnchor.constraint(equalTo: notesCard.leadingAnchor),
+            notesTitleLabel.topAnchor.constraint(equalTo: notesCard.topAnchor, constant: 15),
+            notesTitleLabel.leadingAnchor.constraint(equalTo: notesCard.leadingAnchor, constant: 15),
             notesTextLabel.topAnchor.constraint(equalTo: notesTitleLabel.bottomAnchor, constant: 10),
-            notesTextLabel.leadingAnchor.constraint(equalTo: notesCard.leadingAnchor),
-            notesTextLabel.trailingAnchor.constraint(equalTo: notesCard.trailingAnchor),
-            notesTextLabel.bottomAnchor.constraint(equalTo: notesCard.bottomAnchor),
+            notesTextLabel.leadingAnchor.constraint(equalTo: notesCard.leadingAnchor, constant: 15),
+            notesTextLabel.trailingAnchor.constraint(equalTo: notesCard.trailingAnchor, constant: -15),
+            notesTextLabel.bottomAnchor.constraint(equalTo: notesCard.bottomAnchor, constant: -20),
         ])
     }
     

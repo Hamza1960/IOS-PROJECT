@@ -39,17 +39,17 @@ class ChartViewController: UIViewController {
         let label = UILabel()
         label.text = "Mood Over Time"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let moodLineChartView: MoodLineChartView = {
         let view = MoodLineChartView()
-        view.backgroundColor = .white
+        view.backgroundColor = .secondarySystemGroupedBackground
         view.layer.cornerRadius = 12
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.0).cgColor
+        view.layer.borderColor = UIColor.separator.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
@@ -59,17 +59,17 @@ class ChartViewController: UIViewController {
         let label = UILabel()
         label.text = "Energy Levels"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .darkGray
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let energyBarChartView: EnergyBarChartView = {
         let view = EnergyBarChartView()
-        view.backgroundColor = .white
+        view.backgroundColor = .secondarySystemGroupedBackground
         view.layer.cornerRadius = 12
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.0).cgColor
+        view.layer.borderColor = UIColor.separator.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
@@ -79,7 +79,7 @@ class ChartViewController: UIViewController {
         let label = UILabel()
         label.text = "Pinch to zoom • Swipe to change range"
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .lightGray
+        label.textColor = .secondaryLabel
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -90,7 +90,7 @@ class ChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Charts"
-        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.97, alpha: 1.0)
+        view.backgroundColor = .systemGroupedBackground
         setupUI()
         setupGestures()
     }

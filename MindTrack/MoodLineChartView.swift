@@ -92,8 +92,8 @@ class MoodLineChartView: UIView {
             let x = chartRect.minX + CGFloat(i) * stepX
             let y = chartRect.maxY - (point / maxVal) * chartRect.height
             
-            // White fill circle
-            context.setFillColor(UIColor.white.cgColor)
+            // Dynamic fill circle
+            context.setFillColor(UIColor.secondarySystemGroupedBackground.cgColor)
             context.fillEllipse(in: CGRect(x: x - 6, y: y - 6, width: 12, height: 12))
             
             // Colored border
@@ -114,7 +114,7 @@ class MoodLineChartView: UIView {
                 let x = chartRect.minX + CGFloat(i) * stepX
                 let attrs: [NSAttributedString.Key: Any] = [
                     .font: UIFont.systemFont(ofSize: 9, weight: .regular),
-                    .foregroundColor: UIColor.gray
+                    .foregroundColor: UIColor.secondaryLabel
                 ]
                 let size = label.size(withAttributes: attrs)
                 label.draw(at: CGPoint(x: x - size.width / 2, y: chartRect.maxY + 5), withAttributes: attrs)
@@ -123,7 +123,7 @@ class MoodLineChartView: UIView {
     }
     
     private func drawGrid(context: CGContext, rect: CGRect) {
-        context.setStrokeColor(UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0).cgColor)
+        context.setStrokeColor(UIColor.separator.cgColor)
         context.setLineWidth(0.5)
         
         // Horizontal lines (5 mood levels)
@@ -139,7 +139,7 @@ class MoodLineChartView: UIView {
         let text = "Log entries to see your mood trends 📈"
         let attrs: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: UIColor.lightGray
+            .foregroundColor: UIColor.secondaryLabel
         ]
         let size = text.size(withAttributes: attrs)
         text.draw(at: CGPoint(x: rect.midX - size.width / 2, y: rect.midY - size.height / 2), withAttributes: attrs)

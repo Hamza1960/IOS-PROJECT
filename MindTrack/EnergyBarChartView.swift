@@ -40,7 +40,7 @@ class EnergyBarChartView: UIView {
         let barWidth = (chartRect.width - totalSpacing) / CGFloat(barCount)
         
         // Draw horizontal grid lines
-        context.setStrokeColor(UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0).cgColor)
+        context.setStrokeColor(UIColor.separator.cgColor)
         context.setLineWidth(0.5)
         for i in 0...10 {
             let y = chartRect.maxY - (CGFloat(i) / maxVal) * chartRect.height
@@ -70,7 +70,7 @@ class EnergyBarChartView: UIView {
             let valueText = "\(Int(value))"
             let attrs: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 10, weight: .bold),
-                .foregroundColor: UIColor.darkGray
+                .foregroundColor: UIColor.label
             ]
             let size = valueText.size(withAttributes: attrs)
             valueText.draw(at: CGPoint(x: x + barWidth / 2 - size.width / 2, y: y - 15), withAttributes: attrs)
@@ -79,7 +79,7 @@ class EnergyBarChartView: UIView {
             if i < labels.count {
                 let labelAttrs: [NSAttributedString.Key: Any] = [
                     .font: UIFont.systemFont(ofSize: 8, weight: .regular),
-                    .foregroundColor: UIColor.gray
+                    .foregroundColor: UIColor.secondaryLabel
                 ]
                 let labelSize = labels[i].size(withAttributes: labelAttrs)
                 labels[i].draw(at: CGPoint(x: x + barWidth / 2 - labelSize.width / 2, y: chartRect.maxY + 5), withAttributes: labelAttrs)
@@ -103,7 +103,7 @@ class EnergyBarChartView: UIView {
         let text = "Log entries to see energy levels ⚡"
         let attrs: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: UIColor.lightGray
+            .foregroundColor: UIColor.secondaryLabel
         ]
         let size = text.size(withAttributes: attrs)
         text.draw(at: CGPoint(x: rect.midX - size.width / 2, y: rect.midY - size.height / 2), withAttributes: attrs)
