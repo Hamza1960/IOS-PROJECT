@@ -220,8 +220,10 @@ class HomeViewController: UIViewController {
             moodDescLabel.text = "No entries yet"
             chartPreviewView.dataPoints = []
         } else {
-            let avgMood = entries.reduce(0) { $0 + Int($1.mood) } / entries.count
-            let moodValue = Int16(avgMood)
+            let sum = entries.reduce(0.0) { $0 + Double($1.mood) }
+            let avg = sum / Double(entries.count)
+            let moodValue = Int16(round(avg))
+            
             moodEmojiLabel.text = DataManager.shared.moodEmoji(for: moodValue)
             moodDescLabel.text = DataManager.shared.moodLabel(for: moodValue)
             

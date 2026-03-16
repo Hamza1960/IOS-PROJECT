@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -90,7 +91,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.selectionStyle = .none
             
         case (0, 1): // Reminder Time
-            config.secondaryText = "8:00 PM"
+            let savedTime = UserDefaults.standard.string(forKey: "reminderTime") ?? "8:00 PM"
+            config.secondaryText = savedTime
             config.secondaryTextProperties.color = .gray
             cell.contentConfiguration = config
             cell.accessoryType = .disclosureIndicator
@@ -149,6 +151,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         case 0:
             reminderEnabled = sender.isOn
             UserDefaults.standard.set(reminderEnabled, forKey: "reminderEnabled")
+            if reminderEnabled {
+                requestNotificationPermission()
+            } else {
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            }
         case 1:
             darkModeEnabled = sender.isOn
             UserDefaults.standard.set(darkModeEnabled, forKey: "darkModeEnabled")
@@ -164,12 +171,47 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    private func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, _ in
+            if granted {
+                self.scheduleNotification()
+            }
+        }
+    }
+    
+    private func scheduleNotification() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+        guard UserDefaults.standard.bool(forKey: "reminderEnabled") else { return }
+        
+        let timeStr = UserDefaults.standard.string(forKey: "reminderTime") ?? "8:00 PM"
+        
+        // Parse time string (e.g., "8:00 PM")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        guard let date = formatter.date(from: timeStr) else { return }
+        
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute], from: date)
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Time for MindTrack 🧠"
+        content.body = "How are you feeling today? Take a moment to log your mood and thoughts."
+        content.sound = .default
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        let request = UNNotificationRequest(identifier: "dailyReminder", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }
+    
     private func showTimePicker() {
         let alert = UIAlertController(title: "Reminder Time", message: "Choose when to receive your daily reminder.", preferredStyle: .actionSheet)
         let times = ["7:00 AM", "8:00 PM", "9:00 PM", "10:00 PM"]
         for time in times {
             alert.addAction(UIAlertAction(title: time, style: .default) { _ in
                 UserDefaults.standard.set(time, forKey: "reminderTime")
+                self.scheduleNotification()
                 self.tableView.reloadData()
             })
         }

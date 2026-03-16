@@ -141,6 +141,7 @@ class ChartViewController: UIViewController {
     private func setupGestures() {
         // Multi-touch: Pinch to zoom on mood chart
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(_:)))
+        pinchGesture.delegate = self
         moodLineChartView.addGestureRecognizer(pinchGesture)
         
         // Swipe gestures to navigate time ranges
@@ -154,6 +155,8 @@ class ChartViewController: UIViewController {
         
         // Long press to show details
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        longPress.minimumPressDuration = 0.5 // Standard duration
+        longPress.delegate = self
         moodLineChartView.addGestureRecognizer(longPress)
     }
     
@@ -248,5 +251,12 @@ class ChartViewController: UIViewController {
         default: break
         }
         loadData()
+    }
+}
+
+// MARK: - Gesture Delegate
+extension ChartViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
